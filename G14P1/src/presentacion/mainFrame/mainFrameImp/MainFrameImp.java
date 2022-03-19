@@ -32,7 +32,7 @@ public class MainFrameImp  extends MainFrame{
 	
 	private void iniGUI() {
 		setVisible(true);
-		setTitle("Práctica 1");
+		setTitle("Práctica 2");
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(1090,708));
 		setResizable(false);
