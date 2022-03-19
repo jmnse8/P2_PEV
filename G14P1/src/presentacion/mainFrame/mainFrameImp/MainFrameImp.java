@@ -51,7 +51,7 @@ public class MainFrameImp  extends MainFrame{
 		
 		pG = new PanelGeneral();//570
 		
-		titulo = new JLabel("Práctica 1. ALGORITMO GENÉTICO ");
+		titulo = new JLabel("Práctica 2. ALGORITMO GENÉTICO ");
 		titulo.setBounds(10,10,425,60);
 		titulo.setFont(new Font("Arial", Font.BOLD, 24));
 		titulo.setForeground(Colores.OSCURO2);
