@@ -13,42 +13,35 @@ public class SeleccionRestos implements Seleccion{
 		// TODO Auto-generated method stub
 		int tam_pob = poblacion.size();
         double sumaFitness = 0;
-        boolean max = poblacion.get(0).getMax();
-        int mod;
-        double minFitness = Double.MIN_NORMAL;
+        double fMax = Double.MIN_NORMAL;
         ArrayList<Double> prob = new ArrayList<Double>();
+        ArrayList<Double> puntuacion = new ArrayList<Double>();
         ArrayList<Funcion> seleccion = new ArrayList<Funcion>();
 
         Random rnd = new Random();
-        
-        if (max) mod = 1;
-        else mod = -1;
 
         for (int i = 0; i < tam_pob; i++){
-        	double fitness = (poblacion.get(i).getFitness()) * mod;
-        	if (fitness < minFitness) minFitness = fitness;
-            sumaFitness += fitness;
+        	double fitness = poblacion.get(i).getFitness();
+        	if (fitness > fMax) fMax = fitness;
         }
         
-        sumaFitness += (-minFitness + 1) * tam_pob;
-        
-        double totalProb = 0;
+        if (fMax > 0) fMax *= 1.05;
+        else fMax /= 1.05;
         
         for (int i = 0; i < tam_pob; i++){
-            double probabilidad =(poblacion.get(i).getFitness() - minFitness + 1)/ sumaFitness;
-            prob.add(probabilidad);
-            totalProb += probabilidad;
+            double adaptada = fMax - poblacion.get(i).getFitness();
+            sumaFitness += adaptada;
+            puntuacion.add(adaptada);
         }
         
-        double ajuste = (double)1/totalProb;
         for (int i = 0; i < tam_pob; i++){
-            prob.set(i, prob.get(i) * ajuste);
+            prob.add(puntuacion.get(i) / sumaFitness);
         }
         
         int sel = tam_pob/10;
         
         for (int i = 0; i < tam_pob; i++){
-           if (prob.get(i) * sel >= 1) {
+           if ((prob.get(i) * sel) >= 1) {
                seleccion.add(poblacion.get(i).getCopy());
                poblacion.remove(i);
                i--;
@@ -57,13 +50,13 @@ public class SeleccionRestos implements Seleccion{
         }
         
         // Ajuste de la nueva probabilidad
-        totalProb = 0;
+        double totalProb = 0;
         
         for (int i = 0; i < tam_pob; i++){
             totalProb += prob.get(i);
         }
         
-        ajuste = (double)1/totalProb;
+        double ajuste = (double)1/totalProb;
         for (int i = 0; i < tam_pob; i++){
             prob.set(i, prob.get(i) * ajuste);
         }
