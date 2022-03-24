@@ -6,6 +6,7 @@ import negocio.seleccion.seleccionRuleta.SeleccionRuleta;
 import negocio.seleccion.seleccionTorneoDeterministico.SeleccionTorneoDeterministico;
 import negocio.seleccion.seleccionTorneoProbabilistico.SeleccionTorneoProbabilistico;
 import negocio.seleccion.seleccionTruncamiento.SeleccionTruncamiento;
+import negocio.seleccion.seleccionRanking.SeleccionRanking;
 
 
 public enum SeleccionEnum {
@@ -14,7 +15,8 @@ public enum SeleccionEnum {
 	Seleccion_Ruleta(new SeleccionRuleta()),
 	Seleccion_Torneo_Deterministico(new SeleccionTorneoDeterministico()),
 	Seleccion_Torneo_Probabilistico(new SeleccionTorneoProbabilistico()),
-	Seleccion_Truncamiento(new SeleccionTruncamiento());
+	Seleccion_Truncamiento(new SeleccionTruncamiento()),
+	Seleccion_Ranking(new SeleccionRanking());
 
 	
 	

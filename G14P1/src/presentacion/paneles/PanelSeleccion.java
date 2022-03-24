@@ -34,6 +34,7 @@ public class PanelSeleccion extends JPanel{
 		cB.addItem("Truncamiento");
 		cB.addItem("Torneo Deterministico");
 		cB.addItem("Torneo Probabilistico");
+		cB.addItem("Ranking");
 		cB.setBounds(20,20, 260, 20);
 		cB.setBackground(Colores.CLARO1);
 		cB.setForeground(Colores.OSCURO2);
@@ -54,6 +55,8 @@ public class PanelSeleccion extends JPanel{
 			return SeleccionEnum.Seleccion_Torneo_Probabilistico;
 		case "Truncamiento":
 			return SeleccionEnum.Seleccion_Truncamiento;
+		case "Ranking":
+			return SeleccionEnum.Seleccion_Ranking;
 		default:
 			return SeleccionEnum.Seleccion_Restos;
 		}
