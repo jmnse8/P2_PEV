@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.Random;
 
 import negocio.funcion.Funcion;
+import negocio.funcion.funcionTraficoAereo.Pista;
 import presentacion.mainFrame.MainFrame;
 
 public class Funcion5 implements Funcion, Cloneable {
@@ -25,6 +26,7 @@ public class Funcion5 implements Funcion, Cloneable {
 		}
 	};
 	private double fitness;
+	
 
 	public Funcion5(double intervalo) {
 		n = MainFrame.getInstance().getNFuncion();

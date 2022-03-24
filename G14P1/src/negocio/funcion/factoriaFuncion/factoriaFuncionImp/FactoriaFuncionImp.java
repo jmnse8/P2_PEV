@@ -8,6 +8,7 @@ import negocio.funcion.funcion2.Funcion2;
 import negocio.funcion.funcion3.Funcion3;
 import negocio.funcion.funcion4.Funcion4;
 import negocio.funcion.funcion5.Funcion5;
+import negocio.funcion.funcionTraficoAereo.FuncionTraficoAereo;
 
 public class FactoriaFuncionImp extends FactoriaFuncion{
 
@@ -24,6 +25,8 @@ public class FactoriaFuncionImp extends FactoriaFuncion{
 			return new Funcion4(intervalo);
 		case Funcion_5:
 			return new Funcion5(intervalo);
+		case Funcion_trafico_aereo:
+			return new FuncionTraficoAereo();
 		default:
 			return new Funcion1(intervalo);
 		}

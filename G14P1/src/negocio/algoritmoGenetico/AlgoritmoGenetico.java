@@ -155,7 +155,7 @@ public class AlgoritmoGenetico {
 		plot.addLinePlot("Mejor de la Generación", Color.RED, x, mejor);
 		plot.addLinePlot("Media Generación", Color.GREEN, x, media);
 		mF.setGrafica(plot);
-		JOptionPane.showMessageDialog(null, "La mejor solución ha sido: " + mejorF.toString());
+		JOptionPane.showMessageDialog(null, "La mejor solución ha sido: \n" + mejorF.toString(), "Solución", JOptionPane.PLAIN_MESSAGE);
 	}
 
 	private void guardarElite() {

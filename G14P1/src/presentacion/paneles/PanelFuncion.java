@@ -39,6 +39,7 @@ public class PanelFuncion extends JPanel {
 		cB.addItem("Funcion 3");
 		cB.addItem("Funcion 4");
 		cB.addItem("Funcion 5");
+		cB.addItem("Trafico Aereo");
 		cB.setBounds(20, 20, 210, 20);
 		cB.setBackground(Colores.CLARO1);
 		cB.setForeground(Colores.OSCURO2);
@@ -65,6 +66,8 @@ public class PanelFuncion extends JPanel {
 			return FuncionEnum.Funcion_4;
 		case "Funcion 5":
 			return FuncionEnum.Funcion_5;
+		case "Trafico Aereo":
+			return FuncionEnum.Funcion_trafico_aereo;
 		default:
 			return FuncionEnum.Funcion_1;
 		}
