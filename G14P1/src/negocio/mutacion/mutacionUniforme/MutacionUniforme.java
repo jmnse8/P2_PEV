@@ -16,6 +16,7 @@ public class MutacionUniforme implements Mutacion{
 		Random rnd = new Random();
 		
 		for (int i = 0; i < tam_pob; i++){
+			@SuppressWarnings("unchecked")
 			ArrayList<Double> gen = (ArrayList<Double>) poblacion.get(i).getIndividuo();
 			for (int j = 0; j < tam_gen; j++) {
 				if (rnd.nextDouble() < prob) {

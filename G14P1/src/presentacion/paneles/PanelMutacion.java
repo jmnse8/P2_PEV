@@ -36,6 +36,10 @@ public class PanelMutacion extends JPanel {
 		cB = new JComboBox<String>();
 		cB.addItem("Basica");
 		cB.addItem("Uniforme");
+		cB.addItem("Inserción");
+		cB.addItem("Intercambio");
+		cB.addItem("Inversión");
+		cB.addItem("Heurística");
 		cB.setBounds(20, 20, 260, 20);
 		cB.setBackground(Colores.CLARO1);
 		cB.setForeground(Colores.OSCURO2);
@@ -61,6 +65,14 @@ public class PanelMutacion extends JPanel {
 			return MutacionEnum.Mutacion_Basica;
 		case "Uniforme":
 			return MutacionEnum.Mutacion_Uniforme;
+		case "Inserción":
+			return MutacionEnum.Mutacion_Insercion;
+		case "Intercambio":
+			return MutacionEnum.Mutacion_Intercambio;
+		case "Inversión":
+			return MutacionEnum.Mutacion_Inversion;
+		case "Heurística":
+			return MutacionEnum.Mutacion_Heuristica;
 		default:
 			return MutacionEnum.Mutacion_Basica;
 		}

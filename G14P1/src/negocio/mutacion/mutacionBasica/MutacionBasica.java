@@ -18,6 +18,7 @@ public class MutacionBasica implements Mutacion{
 		Random rnd = new Random();
 		
 		for (int i = 0; i < tam_pob; i++){
+			@SuppressWarnings("unchecked")
 			ArrayList<Boolean> gen = (ArrayList<Boolean>) poblacion.get(i).getIndividuo();
 			for (int j = 0; j < tam_gen; j++) {
 				if (rnd.nextDouble() < prob)

@@ -54,11 +54,13 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 
 		Random rd = new Random();
 		int nVuelos = DatosTraficoAereo.getNumVuelos();
-
-		for (int i = 0; i < nVuelos; i++) {
+		int cont = 0;
+		while (cont < nVuelos) {
 			int numero = rd.nextInt(nVuelos);
-			if (!individuo.contains(numero))
+			if (!individuo.contains(numero)) {
 				individuo.add(numero + 1);
+				cont++;
+			}
 		}
 		pistas = new ArrayList<Pista>();
 		for (int i = 1; i <= DatosTraficoAereo.getNumPistas(); i++) {
@@ -202,13 +204,13 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 		return sol;
 
 	}
-/*
-	public static void main(String[] args) {
-		javax.swing.UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Consolas", Font.PLAIN, 11)));
-		FuncionTraficoAereo f = new FuncionTraficoAereo();
-		f.calculaFitness();
-		JOptionPane.showMessageDialog(null, "La mejor solución ha sido:\n" + f.toString(), "Solución",
-				JOptionPane.PLAIN_MESSAGE);
-	}*/
+	/*
+	 * public static void main(String[] args) {
+	 * javax.swing.UIManager.put("OptionPane.messageFont", new FontUIResource(new
+	 * Font("Consolas", Font.PLAIN, 11))); FuncionTraficoAereo f = new
+	 * FuncionTraficoAereo(); f.calculaFitness();
+	 * JOptionPane.showMessageDialog(null, "La mejor solución ha sido:\n" +
+	 * f.toString(), "Solución", JOptionPane.PLAIN_MESSAGE); }
+	 */
 
 }

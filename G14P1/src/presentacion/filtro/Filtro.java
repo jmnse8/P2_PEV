@@ -24,11 +24,14 @@ public class Filtro {
 				return false;
 			if(!compruebaMutacion(1,mutacionTipo))
 				return false;
-		} else {
+		} else if(funcionTipo == FuncionEnum.Funcion_5){
 			if(!compruebaCruce(2,cruceTipo))
 				return false;
 			if(!compruebaMutacion(2,mutacionTipo))
 				return false;
+		}
+		else {
+			return true;
 		}
 
 		return true;

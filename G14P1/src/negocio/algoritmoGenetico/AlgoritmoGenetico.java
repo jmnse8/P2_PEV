@@ -92,7 +92,7 @@ public class AlgoritmoGenetico {
 			if (elitismoSeleccionado)
 				guardarElite();// guardar elite
 			poblacion = seleccion.execute(poblacion);
-			poblacion = cruce.execute(poblacion, porcentajeCruce);
+			//poblacion = cruce.execute(poblacion, porcentajeCruce);
 			poblacion = mutacion.execute(poblacion, porcentajeMutacion);
 			// ev poblacion
 			evaluar();
