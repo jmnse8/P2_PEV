@@ -1,6 +1,5 @@
 package negocio.funcion.funcionTraficoAereo;
 
-//import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -46,8 +45,8 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 	public FuncionTraficoAereo() {
 		individuo = new ArrayList<Integer>();
 
-		// individuo.add(8);individuo.add(12);individuo.add(11);individuo.add(4);individuo.add(3);individuo.add(10);individuo.add(5);
-		// individuo.add(6);individuo.add(7);individuo.add(9);individuo.add(1);individuo.add(2);
+		//individuo.add(8);individuo.add(12);individuo.add(11);individuo.add(4);individuo.add(3);individuo.add(10);individuo.add(5);
+		//individuo.add(6);individuo.add(7);individuo.add(9);individuo.add(1);individuo.add(2);
 
 		// individuo.add(8);individuo.add(9);individuo.add(10);individuo.add(11);individuo.add(12);individuo.add(7);individuo.add(6);
 		// individuo.add(5);individuo.add(4);individuo.add(3);individuo.add(2);individuo.add(1);
@@ -57,7 +56,7 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 		int cont = 0;
 		while (cont < nVuelos) {
 			int numero = rd.nextInt(nVuelos);
-			if (!individuo.contains(numero)) {
+			if (!individuo.contains(numero + 1)) {
 				individuo.add(numero + 1);
 				cont++;
 			}
@@ -205,12 +204,12 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 
 	}
 	/*
-	 * public static void main(String[] args) {
-	 * javax.swing.UIManager.put("OptionPane.messageFont", new FontUIResource(new
-	 * Font("Consolas", Font.PLAIN, 11))); FuncionTraficoAereo f = new
-	 * FuncionTraficoAereo(); f.calculaFitness();
-	 * JOptionPane.showMessageDialog(null, "La mejor solución ha sido:\n" +
-	 * f.toString(), "Solución", JOptionPane.PLAIN_MESSAGE); }
-	 */
-
+	  public static void main(String[] args) {
+	  javax.swing.UIManager.put("OptionPane.messageFont", new FontUIResource(new java.awt.Font("Consolas", java.awt.Font.PLAIN, 11)));
+	  FuncionTraficoAereo f = new
+	  FuncionTraficoAereo(); f.calculaFitness();
+	  JOptionPane.showMessageDialog(null, "La mejor solución ha sido:\n" +
+	  f.toString(), "Solución", JOptionPane.PLAIN_MESSAGE); }
+	 
+*/
 }
