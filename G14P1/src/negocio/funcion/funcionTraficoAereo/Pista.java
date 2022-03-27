@@ -12,20 +12,24 @@ public class Pista {
 	}
 
 	public double cuantoCuestaMeterEnPista(Vuelo vueloMeter) {
-		
+		double telAdaptado = 0.0;
 		if (avionesEnPista.isEmpty()) {
 			return DatosTraficoAereo.tel[numeroPista - 1][vueloMeter.numero - 1];
 		} else {
-			double resta = Math.abs(avionesEnPista.get(avionesEnPista.size() - 1).tla - DatosTraficoAereo.tel[numeroPista - 1][vueloMeter.numero - 1]);
-			double sep = DatosTraficoAereo.sep[pesoToInt(avionesEnPista.get(avionesEnPista.size() - 1).peso)][pesoToInt(vueloMeter.peso)];
 			if(avionesEnPista.get(avionesEnPista.size() - 1).tla > DatosTraficoAereo.tel[numeroPista - 1][vueloMeter.numero - 1])
-				return Double.MAX_VALUE;
+				telAdaptado = avionesEnPista.get(avionesEnPista.size() - 1).tla;
+			else
+				telAdaptado = DatosTraficoAereo.tel[numeroPista - 1][vueloMeter.numero - 1];
+			
+			double resta = Math.abs(avionesEnPista.get(avionesEnPista.size() - 1).tla - telAdaptado);
+			double sep = DatosTraficoAereo.sep[pesoToInt(avionesEnPista.get(avionesEnPista.size() - 1).peso)][pesoToInt(vueloMeter.peso)];
+			
 			if(resta >= sep) {
-				return DatosTraficoAereo.tel[numeroPista - 1][vueloMeter.numero - 1];
+				return telAdaptado;
 			}
 			else {
 				double tiempoAñadir = sep - resta;
-				return DatosTraficoAereo.tel[numeroPista - 1][vueloMeter.numero - 1] + tiempoAñadir;
+				return telAdaptado + tiempoAñadir;
 			}
 		}
 	}

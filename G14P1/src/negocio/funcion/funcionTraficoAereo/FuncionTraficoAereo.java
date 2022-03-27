@@ -87,6 +87,7 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 			Collections.sort(mejor, compPV);
 			pistas.get(mejor.get(0).numeroPista - 1).meteVuelo(vuelos[ent - 1], mejor.get(0).tla);
 		}
+		
 		double suma = 0.0;
 		for (Pista p : pistas) {
 			for (Vuelo v : p.getAvionesEnPista()) {

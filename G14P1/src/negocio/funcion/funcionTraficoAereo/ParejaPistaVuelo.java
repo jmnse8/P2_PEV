@@ -7,4 +7,10 @@ public class ParejaPistaVuelo {
 		this.numeroPista = numeroPista;
 		this.tla = tla;
 	}
+	@Override
+	public String toString() {
+		return "ParejaPistaVuelo [numeroPista=" + numeroPista + ", tla=" + tla + "]";
+	}
+	
+	
 }
