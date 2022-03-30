@@ -38,6 +38,12 @@ public class PanelCruce extends JPanel {
 		cB.addItem("BLX");
 		cB.addItem("Monopunto");
 		cB.addItem("Uniforme");
+		cB.addItem("PMX");
+		cB.addItem("CX");
+		cB.addItem("CO");
+		cB.addItem("OX");
+		cB.addItem("OXPP");
+		cB.addItem("OXOP");
 		cB.setBounds(20, 20, 260, 20);
 		cB.setBackground(Colores.CLARO1);
 		cB.setForeground(Colores.OSCURO2);
@@ -66,6 +72,18 @@ public class PanelCruce extends JPanel {
 			return CruceEnum.Cruce_Monopunto;
 		case "Uniforme":
 			return CruceEnum.Cruce_Uniforme;
+		case "PMX":
+			return CruceEnum.Cruce_PMX;
+		case "CO":
+			return CruceEnum.Cruce_CO;
+		case "CX":
+			return CruceEnum.Cruce_CX;
+		case "OX":
+			return CruceEnum.Cruce_OX;
+		case "OXPP":
+			return CruceEnum.Cruce_OXPP;
+		case "OXOP":
+			return CruceEnum.Cruce_OXOP;
 		default:
 			return CruceEnum.Cruce_Arimetico;
 		}
