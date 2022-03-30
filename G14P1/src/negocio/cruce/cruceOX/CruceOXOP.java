@@ -47,7 +47,7 @@ public class CruceOXOP implements Cruce{
 			ArrayList<Integer> hijo1 = new ArrayList<Integer>();
 			ArrayList<Integer> hijo2 = new ArrayList<Integer>();
 			
-			for (int j = 0; i < tam_pob; j++) {
+			for (int j = 0; j < tam; j++) {
 				hijo1.add(-1);
 				hijo2.add(-1);
 			}
@@ -74,9 +74,9 @@ public class CruceOXOP implements Cruce{
 			int act = 0;
 			for (int j = 0; j < tam; j++) {
 				if (!ciudades1.contains(gen2.get(j)))
-					hijo2.add(j, gen2.get(j));
+					hijo2.set(j, gen2.get(j));
 				else {
-					hijo2.add(j, ciudades1.get(act));
+					hijo2.set(j, ciudades1.get(act));
 					act++;
 				}
 			}
@@ -91,9 +91,9 @@ public class CruceOXOP implements Cruce{
 			act = 0;
 			for (int j = 0; j < tam; j++) {
 				if (!ciudades2.contains(gen1.get(j)))
-					hijo1.add(j, gen1.get(j));
+					hijo1.set(j, gen1.get(j));
 				else {
-					hijo1.add(j, ciudades2.get(act));
+					hijo1.set(j, ciudades2.get(act));
 					act++;
 				}
 			}

@@ -45,46 +45,46 @@ public class CruceCX implements Cruce{
 			
 			int tam = poblacion.get(0).getTam();
 			
-			for (int j = 0; i < tam_pob; j++) {
+			for (int j = 0; j < tam; j++) {
 				hijo1.add(-1);
 				hijo2.add(-1);
 			}
 			
 			int first = gen1.get(0);
-			hijo1.add(0, first);
+			hijo1.set(0, first);
 			int pair = gen2.get(0);
 			
 			boolean cont = true;
 			
 			while (cont) {
 				int it = getIndex(gen1,pair);
-				hijo1.add(it, pair);
+				hijo1.set(it, pair);
 				pair = gen2.get(it);
-				cont = (hijo1.get(getIndex(gen1,pair)) == -1);
+				cont = (hijo1.get(gen1.indexOf(pair)) == -1);
 			}
 			
 			for (int j = 0; j < tam; j++) {
 				if (hijo1.get(j) == -1)
-					hijo1.add(j, gen2.get(j));
+					hijo1.set(j, gen2.get(j));
 			}
 			
 			
 			first = gen2.get(0);
-			hijo2.add(0, first);
+			hijo2.set(0, first);
 			pair = gen1.get(0);
 			
 			cont = true;
 			
 			while (cont) {
 				int it = getIndex(gen2,pair);
-				hijo2.add(it, pair);
+				hijo2.set(it, pair);
 				pair = gen1.get(it);
-				cont = (hijo2.get(getIndex(gen2,pair)) == -1);
+				cont = (hijo2.get(gen2.indexOf(pair)) == -1);
 			}
 			
 			for (int j = 0; j < tam; j++) {
 				if (hijo2.get(j) == -1)
-					hijo2.add(j, gen1.get(j));
+					hijo2.set(j, gen1.get(j));
 			}
 			
 			poblacion.get(cruces.get(i)).setIndividuo(hijo1);
@@ -94,13 +94,7 @@ public class CruceCX implements Cruce{
 	}
 	
 	private int getIndex(ArrayList<Integer> indiv, int val) {
-		int i = 0;
-		while (true) {
-			if (indiv.get(i) == val)
-				return i;
-			
-			i++;
-		}
+		return indiv.indexOf(val);
 	}
 
 }

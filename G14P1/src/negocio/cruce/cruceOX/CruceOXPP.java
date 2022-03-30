@@ -47,7 +47,7 @@ public class CruceOXPP implements Cruce{
 			ArrayList<Integer> hijo1 = new ArrayList<Integer>();
 			ArrayList<Integer> hijo2 = new ArrayList<Integer>();
 			
-			for (int j = 0; i < tam_pob; j++) {
+			for (int j = 0; j < tam; j++) {
 				hijo1.add(-1);
 				hijo2.add(-1);
 			}
@@ -66,8 +66,8 @@ public class CruceOXPP implements Cruce{
 			}
 			
 			for (int j = 0; j < cambios; j++) {
-				hijo1.add(intercambios.get(j), gen2.get(intercambios.get(j)));
-				hijo2.add(intercambios.get(j), gen1.get(intercambios.get(j)));
+				hijo1.set(intercambios.get(j), gen2.get(intercambios.get(j)));
+				hijo2.set(intercambios.get(j), gen1.get(intercambios.get(j)));
 			}
 			
 			int it = maxCambio + 1 , act = maxCambio +1;
@@ -79,7 +79,7 @@ public class CruceOXPP implements Cruce{
 				if(hijo1.get(it) != -1) {
 					it++;
 				}else if(!hijo1.contains(gen1.get(act))) {
-					hijo1.add(it, gen1.get(act));
+					hijo1.set(it, gen1.get(act));
 					it++;
 				}
 				act++;
@@ -95,7 +95,7 @@ public class CruceOXPP implements Cruce{
 				if(hijo2.get(it) != -1) {
 					it++;
 				}else if(!hijo2.contains(gen2.get(act))) {
-					hijo2.add(it, gen2.get(act));
+					hijo2.set(it, gen2.get(act));
 					it++;
 				}
 				act++;

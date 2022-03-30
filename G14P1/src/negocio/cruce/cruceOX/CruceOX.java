@@ -43,21 +43,21 @@ public class CruceOX implements Cruce{
 			ArrayList<Integer> hijo1 = new ArrayList<Integer>();
 			ArrayList<Integer> hijo2 = new ArrayList<Integer>();
 			
-			for (int j = 0; i < tam_pob; j++) {
+			int tam = poblacion.get(0).getTam();
+			
+			for (int j = 0; j < tam; j++) {
 				hijo1.add(-1);
 				hijo2.add(-1);
 			}
-			int r1 = rnd.nextInt(tam_pob);
-			int r2 = rnd.nextInt(tam_pob);
+			int r1 = rnd.nextInt(tam);
+			int r2 = rnd.nextInt(tam);
 			
 			int c1 = Math.min(r1, r2);
 			int c2 = Math.max(r1, r2);
 			
-			int tam = poblacion.get(0).getTam();
-			
 			for (int j = c1; j <= c2; j++ ) {
-				hijo1.add(j, gen2.get(j));
-				hijo2.add(j, gen1.get(j));
+				hijo1.set(j, gen2.get(j));
+				hijo2.set(j, gen1.get(j));
 			}
 			
 			
@@ -69,7 +69,7 @@ public class CruceOX implements Cruce{
 				act = act % tam;
 				
 				if(!hijo1.contains(gen1.get(act))) {
-					hijo1.add(it, gen1.get(act));
+					hijo1.set(it, gen1.get(act));
 					it++;
 				}
 				act++;
@@ -83,7 +83,7 @@ public class CruceOX implements Cruce{
 				act = act % tam;
 				
 				if(!hijo2.contains(gen2.get(act))) {
-					hijo2.add(it, gen2.get(act));
+					hijo2.set(it, gen2.get(act));
 					it++;
 				}
 				act++;

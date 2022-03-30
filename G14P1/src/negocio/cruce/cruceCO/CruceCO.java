@@ -70,8 +70,8 @@ public class CruceCO implements Cruce{
 			
 			for(int j = tam/2; j < tam; j++) {
 				int aux = recorrido1.get(j);
-				recorrido1.add(j,recorrido2.get(j));
-				recorrido2.add(j, aux);
+				recorrido1.set(j,recorrido2.get(j));
+				recorrido2.set(j, aux);
 			}
 			
 			for (int j = 0; j < tam; j++) {
@@ -99,13 +99,7 @@ public class CruceCO implements Cruce{
 	}
 	
 	private int getIndex(ArrayList<Integer> indiv, int val) {
-		int i = 0;
-		while (true) {
-			if (indiv.get(i) == val)
-				return i;
-			
-			i++;
-		}
+		return indiv.indexOf(val);
 	}
 
 }

@@ -36,6 +36,8 @@ public class CrucePMX implements Cruce{
 		
 		for(int i = 0; i < numCruces; i += 2) {
 			
+			int tam = poblacion.get(0).getTam();
+			
 			ArrayList<Integer> gen1 = (ArrayList<Integer>)poblacion.get(cruces.get(i)).getIndividuo();
 			ArrayList<Integer> gen2 = (ArrayList<Integer>)poblacion.get(cruces.get(i+1)).getIndividuo();
 			
@@ -43,35 +45,45 @@ public class CrucePMX implements Cruce{
 			ArrayList<Integer> hijo1 = new ArrayList<Integer>();
 			ArrayList<Integer> hijo2 = new ArrayList<Integer>();
 			
-			for (int j = 0; i < tam_pob; j++) {
+			for (int j = 0; j < tam; j++) {
 				hijo1.add(-1);
 				hijo2.add(-1);
 			}
-			int r1 = rnd.nextInt(tam_pob);
-			int r2 = rnd.nextInt(tam_pob);
+			int r1 = rnd.nextInt(tam);
+			int r2 = rnd.nextInt(tam);
 			
 			int c1 = Math.min(r1, r2);
 			int c2 = Math.max(r1, r2);
 			
-			int tam = poblacion.get(0).getTam();
+			
 			
 			for (int j = c1; j <= c2; j++ ) {
-				hijo1.add(j, gen2.get(j));
-				hijo2.add(j, gen1.get(j));
+				hijo1.set(j, gen2.get(j));
+				hijo2.set(j, gen1.get(j));
 			}
 			
 			for (int j = 0; j < tam; j++) {
 				if (hijo1.get(j) == -1) {
 					if (!hijo1.contains(gen1.get(j))) {
-						hijo1.add(j, gen1.get(j));
+						hijo1.set(j, gen1.get(j));
 					}else {
-						hijo1.add(j, gen2.get(getIndex(gen1,gen1.get(j))));
+						int aux = hijo2.get(getIndex(hijo1,gen1.get(j)));
+						if (hijo1.contains(aux)) {
+							System.out.print("Repe " + aux + " " + c1 + "-"+ c2+ "\n");
+							System.out.print(gen1.toString() + "\n");
+							System.out.print(gen2.toString() + "\n");
+							System.out.print(hijo1.toString() + "\n");
+							System.out.print(hijo2.toString() + "\n");
+							System.out.print("---------------------------\n");
+						}
+						hijo1.set(j,aux);
+						
 					}
 					
 					if (!hijo2.contains(gen2.get(j))) {
-						hijo2.add(j, gen2.get(j));
+						hijo2.set(j, gen2.get(j));
 					}else {
-						hijo2.add(j, gen1.get(getIndex(gen2,gen2.get(j))));
+						hijo2.set(j, gen1.get(getIndex(hijo2,gen2.get(j))));
 					}
 				}
 			}
@@ -85,13 +97,7 @@ public class CrucePMX implements Cruce{
 	}
 	
 	private int getIndex(ArrayList<Integer> indiv, int val) {
-		int i = 0;
-		while (true) {
-			if (indiv.get(i) == val)
-				return i;
-			
-			i++;
-		}
+		return indiv.indexOf(val);
 	}
 
 }
