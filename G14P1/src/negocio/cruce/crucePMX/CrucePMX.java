@@ -77,6 +77,7 @@ public class CrucePMX implements Cruce{
 			}
 			
 			
+			
 			poblacion.get(cruces.get(i)).setIndividuo(hijo1);
 			poblacion.get(cruces.get(i+1)).setIndividuo(hijo2);
 		}

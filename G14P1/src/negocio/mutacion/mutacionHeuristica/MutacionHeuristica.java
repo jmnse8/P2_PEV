@@ -29,7 +29,7 @@ public class MutacionHeuristica implements Mutacion {
 
 				int numeroAPermutar = -1, contPosicionesSacadas = 0, posPermutar = 0;
 
-				while (numeroAPermutar < 2 || numeroAPermutar > 10) // mínimo 2
+				while (numeroAPermutar < 2 || numeroAPermutar > 5) // mínimo 2
 					numeroAPermutar = rnd.nextInt(tam_gen);// Limitado a 10 para que no salgan más de 3.628.800 permutaciones
 				
 				while (contPosicionesSacadas < numeroAPermutar) {
@@ -86,7 +86,7 @@ public class MutacionHeuristica implements Mutacion {
 		gen.set(arrayPosicionesPermutar.get(i), t2);
 		gen.set(arrayPosicionesPermutar.get(j), t);
 	}
-
+/*
 	public static void main(String[] args) {
 		ArrayList<Funcion> poblacion = new ArrayList<Funcion>();
 		int porcentajeMutacion = 100;
@@ -102,5 +102,5 @@ public class MutacionHeuristica implements Mutacion {
 
 		// System.out.println(poblacion.toString());
 
-	}
+	}*/
 }

@@ -19,7 +19,7 @@ public class MutacionIntercambio implements Mutacion{
 			if (rnd.nextDouble() < prob) {// Miro si hay que mutar
 				@SuppressWarnings("unchecked")
 				ArrayList<Integer> gen = (ArrayList<Integer>) poblacion.get(i).getIndividuo();// Cojo el gen
-				System.out.println(gen.toString());
+				//System.out.println(gen.toString());
 
 				int punto1 = rnd.nextInt(tam_gen), punto2 = rnd.nextInt(tam_gen);// saco los dos puntos de intercambio
 				while (punto1 == punto2) // los puntos de intercambio no pueden ser iguales

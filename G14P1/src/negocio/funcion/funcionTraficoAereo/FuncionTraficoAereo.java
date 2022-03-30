@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
-
 //import javax.swing.JOptionPane;
 //import javax.swing.plaf.FontUIResource;
 
@@ -48,7 +47,7 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 		//individuo.add(8);individuo.add(12);individuo.add(11);individuo.add(4);individuo.add(3);individuo.add(10);individuo.add(5);
 		//individuo.add(6);individuo.add(7);individuo.add(9);individuo.add(1);individuo.add(2);
 
-		// individuo.add(8);individuo.add(9);individuo.add(10);individuo.add(11);individuo.add(12);individuo.add(7);individuo.add(6);
+		//individuo.add(8);individuo.add(9);individuo.add(10);individuo.add(11);individuo.add(12);individuo.add(7);individuo.add(6);
 		// individuo.add(5);individuo.add(4);individuo.add(3);individuo.add(2);individuo.add(1);
 
 		Random rd = new Random();
@@ -200,7 +199,8 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 		for (Pista p : pistas) {
 			sol += "              |__________________________|";
 		}
-		sol += "\n\n                 EL FITNESS RESULTANTE ES " + fitness + ".\n";
+		sol += "\n\n                 EL FITNESS RESULTANTE ES " + fitness + ".\n\n";
+		sol += "                EL INDIVIDUO HA SIDO "	+ individuo.toString() + ".";
 		return sol;
 
 	}
