@@ -34,10 +34,6 @@ public class PanelCruce extends JPanel {
 		setBorder(BorderFactory.createTitledBorder(b, "ELIGE EL TIPO DE CRUCE ", TitledBorder.LEFT, TitledBorder.TOP,new Font("Arial", Font.BOLD, 15),Colores.OSCURO2));
 
 		cB = new JComboBox<String>();
-		cB.addItem("Arimetico");
-		cB.addItem("BLX");
-		cB.addItem("Monopunto");
-		cB.addItem("Uniforme");
 		cB.addItem("PMX");
 		cB.addItem("CX");
 		cB.addItem("CO");
@@ -64,14 +60,6 @@ public class PanelCruce extends JPanel {
 
 	public CruceEnum getCruce() {
 		switch ((String) cB.getSelectedItem()) {
-		case "Arimetico":
-			return CruceEnum.Cruce_Arimetico;
-		case "BLX":
-			return CruceEnum.Cruce_BLX;
-		case "Monopunto":
-			return CruceEnum.Cruce_Monopunto;
-		case "Uniforme":
-			return CruceEnum.Cruce_Uniforme;
 		case "PMX":
 			return CruceEnum.Cruce_PMX;
 		case "CO":
@@ -85,7 +73,7 @@ public class PanelCruce extends JPanel {
 		case "OXOP":
 			return CruceEnum.Cruce_OXOP;
 		default:
-			return CruceEnum.Cruce_Arimetico;
+			return CruceEnum.Cruce_PMX;
 		}
 	}
 	

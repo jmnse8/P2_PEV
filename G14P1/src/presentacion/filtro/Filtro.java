@@ -57,7 +57,7 @@ public class Filtro {
 	}
 
 	private static boolean compruebaCruce(int fT,CruceEnum cruceTipo) {
-		if(fT == 1) {
+		/*if(fT == 1) {
 			if(cruceTipo == CruceEnum.Cruce_Monopunto || cruceTipo == CruceEnum.Cruce_Uniforme) {
 				return true;
 			}
@@ -67,6 +67,7 @@ public class Filtro {
 		}
 		else {
 			return true;
-		}
+		}*/
+		return true;
 	}
 }
