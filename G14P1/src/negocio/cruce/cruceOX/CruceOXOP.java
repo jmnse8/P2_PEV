@@ -26,14 +26,14 @@ public class CruceOXOP implements Cruce{
 		ArrayList<Integer> cruces;
 		cruces = new ArrayList<Integer>();
 		
-		for(int i = 0; i < tam_pob; i++) {
+		for(int i = 0; i < tam_pob; i++) { //Seleccionamos los individuos a cruzar
 			if (rnd.nextDouble() < prob)
 				cruces.add(i);
 		}
 		
 		int numCruces = cruces.size();
 		
-		if (numCruces % 2 != 0) {
+		if (numCruces % 2 != 0) { //Si son impares eliminamos uno
 			cruces.remove(numCruces / 2);
 			numCruces--;
 		}
@@ -47,11 +47,12 @@ public class CruceOXOP implements Cruce{
 			ArrayList<Integer> hijo1 = new ArrayList<Integer>();
 			ArrayList<Integer> hijo2 = new ArrayList<Integer>();
 			
-			for (int j = 0; j < tam; j++) {
+			for (int j = 0; j < tam; j++) {//Rellenamos los hijos a -1
 				hijo1.add(-1);
 				hijo2.add(-1);
 			}
 			
+			//Seleccionamos las posiciones a intercambiar de forma aleatoria
 			ArrayList<Integer> intercambios = new ArrayList<Integer>();
 			int maxCambio = -1;
 			
@@ -65,35 +66,37 @@ public class CruceOXOP implements Cruce{
 				if (rand > maxCambio) maxCambio = rand;
 			}
 			
-			ArrayList<Integer> ciudades1 = new ArrayList<Integer>();
+			
+			//reordenamos los hijos
+			ArrayList<Integer> aux = new ArrayList<Integer>();
 			
 			for (int j = 0; j < cambios; j++) {
-				ciudades1.add(gen1.get(intercambios.get(j)));
+				aux.add(gen1.get(intercambios.get(j)));
 			}
 			
 			int act = 0;
 			for (int j = 0; j < tam; j++) {
-				if (!ciudades1.contains(gen2.get(j)))
+				if (!aux.contains(gen2.get(j)))
 					hijo2.set(j, gen2.get(j));
 				else {
-					hijo2.set(j, ciudades1.get(act));
+					hijo2.set(j, aux.get(act));
 					act++;
 				}
 			}
 			
 			
-			ArrayList<Integer> ciudades2 = new ArrayList<Integer>();
+			aux = new ArrayList<Integer>();
 			
 			for (int j = 0; j < cambios; j++) {
-				ciudades2.add(gen2.get(intercambios.get(j)));
+				aux.add(gen2.get(intercambios.get(j)));
 			}
 			
 			act = 0;
 			for (int j = 0; j < tam; j++) {
-				if (!ciudades2.contains(gen1.get(j)))
+				if (!aux.contains(gen1.get(j)))
 					hijo1.set(j, gen1.get(j));
 				else {
-					hijo1.set(j, ciudades2.get(act));
+					hijo1.set(j, aux.get(act));
 					act++;
 				}
 			}

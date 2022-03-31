@@ -23,14 +23,14 @@ public class CruceCO implements Cruce{
 		ArrayList<Integer> cruces;
 		cruces = new ArrayList<Integer>();
 		
-		for(int i = 0; i < tam_pob; i++) {
+		for(int i = 0; i < tam_pob; i++) { //Seleccionamos los individuos a cruzar
 			if (rnd.nextDouble() < prob)
 				cruces.add(i);
 		}
 		
 		int numCruces = cruces.size();
 		
-		if (numCruces % 2 != 0) {
+		if (numCruces % 2 != 0) { //Si son impares eliminamos uno
 			cruces.remove(numCruces / 2);
 			numCruces--;
 		}
@@ -50,14 +50,17 @@ public class CruceCO implements Cruce{
 			
 			int tam = poblacion.get(0).getTam();
 			
+			//creamos una copia de los padres
 			for (int j = 0; j < tam; j++) {
 				gen1copia.add(gen1.get(j));
 				gen2copia.add(gen2.get(j));
 			}
 			
+			//ordenamos la copia
 			Collections.sort(gen1copia);
 			Collections.sort(gen2copia);
 			
+			//generamos el recorrido de cada padre
 			for (int j = 0; j < tam; j++) {
 				int pos = getIndex(gen1copia,gen1.get(j));
 				recorrido1.add(pos);
@@ -68,20 +71,25 @@ public class CruceCO implements Cruce{
 				gen2copia.remove(pos);
 			}
 			
+			//mezclamos recorridos en el punto medio
 			for(int j = tam/2; j < tam; j++) {
 				int aux = recorrido1.get(j);
 				recorrido1.set(j,recorrido2.get(j));
 				recorrido2.set(j, aux);
 			}
 			
+			
+			//regeneramos la copia de los padres
 			for (int j = 0; j < tam; j++) {
 				gen1copia.add(gen1.get(j));
 				gen2copia.add(gen2.get(j));
 			}
 			
+			//reordenamos
 			Collections.sort(gen1copia);
 			Collections.sort(gen2copia);
 			
+			//generamos los hijos con los nuevos recorridos
 			for (int j = 0; j < tam; j++) {
 				int pos = recorrido1.get(j);
 				hijo1.add(gen1copia.get(pos));

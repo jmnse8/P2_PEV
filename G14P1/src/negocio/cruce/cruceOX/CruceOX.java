@@ -22,14 +22,14 @@ public class CruceOX implements Cruce{
 		ArrayList<Integer> cruces;
 		cruces = new ArrayList<Integer>();
 		
-		for(int i = 0; i < tam_pob; i++) {
+		for(int i = 0; i < tam_pob; i++) { //Seleccionamos los individuos a cruzar
 			if (rnd.nextDouble() < prob)
 				cruces.add(i);
 		}
 		
 		int numCruces = cruces.size();
 		
-		if (numCruces % 2 != 0) {
+		if (numCruces % 2 != 0) { //Si son impares eliminamos uno
 			cruces.remove(numCruces / 2);
 			numCruces--;
 		}
@@ -45,16 +45,19 @@ public class CruceOX implements Cruce{
 			
 			int tam = poblacion.get(0).getTam();
 			
-			for (int j = 0; j < tam; j++) {
+			for (int j = 0; j < tam; j++) {//Rellenamos los hijos a -1
 				hijo1.add(-1);
 				hijo2.add(-1);
 			}
+			
+			//Elegimos unos puntos de core aleatorios
 			int r1 = rnd.nextInt(tam);
 			int r2 = rnd.nextInt(tam);
 			
 			int c1 = Math.min(r1, r2);
 			int c2 = Math.max(r1, r2);
 			
+			//intercambiamos la zona seleccionada
 			for (int j = c1; j <= c2; j++ ) {
 				hijo1.set(j, gen2.get(j));
 				hijo2.set(j, gen1.get(j));
@@ -64,6 +67,7 @@ public class CruceOX implements Cruce{
 			
 			int it = c2 + 1 , act = c2 +1;
 			
+			//rellenamos el resto de ambos hijos con los valores restantes de los padres de forma ordenada
 			while (it != c1) {
 				it = it % tam;
 				act = act % tam;

@@ -26,14 +26,14 @@ public class CruceOXPP implements Cruce{
 		ArrayList<Integer> cruces;
 		cruces = new ArrayList<Integer>();
 		
-		for(int i = 0; i < tam_pob; i++) {
+		for(int i = 0; i < tam_pob; i++) { //Seleccionamos los individuos a cruzar
 			if (rnd.nextDouble() < prob)
 				cruces.add(i);
 		}
 		
 		int numCruces = cruces.size();
 		
-		if (numCruces % 2 != 0) {
+		if (numCruces % 2 != 0) { //Si son impares eliminamos uno
 			cruces.remove(numCruces / 2);
 			numCruces--;
 		}
@@ -47,11 +47,12 @@ public class CruceOXPP implements Cruce{
 			ArrayList<Integer> hijo1 = new ArrayList<Integer>();
 			ArrayList<Integer> hijo2 = new ArrayList<Integer>();
 			
-			for (int j = 0; j < tam; j++) {
+			for (int j = 0; j < tam; j++) {//Rellenamos los hijos a -1
 				hijo1.add(-1);
 				hijo2.add(-1);
 			}
 			
+			//Seleccionamos las posiciones a intercambiar de forma aleatoria
 			ArrayList<Integer> intercambios = new ArrayList<Integer>();
 			int maxCambio = -1;
 			
@@ -65,6 +66,7 @@ public class CruceOXPP implements Cruce{
 				if (rand > maxCambio) maxCambio = rand;
 			}
 			
+			//Intercambiamos esas posiciones
 			for (int j = 0; j < cambios; j++) {
 				hijo1.set(intercambios.get(j), gen2.get(intercambios.get(j)));
 				hijo2.set(intercambios.get(j), gen1.get(intercambios.get(j)));
@@ -72,6 +74,8 @@ public class CruceOXPP implements Cruce{
 			
 			int it = maxCambio + 1 , act = maxCambio +1;
 			
+			
+			//rellenamos el resto de ambos hijos con los valores restantes de los padres de forma ordenada
 			while (it != maxCambio) {
 				it = it % tam;
 				act = act % tam;
