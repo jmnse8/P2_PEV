@@ -68,27 +68,26 @@ public class CrucePMX implements Cruce{
 						hijo1.set(j, gen1.get(j));
 					}else {
 						int aux = hijo2.get(getIndex(hijo1,gen1.get(j)));
-						if (hijo1.contains(aux)) {
-							System.out.print("Repe " + aux + " " + c1 + "-"+ c2+ "\n");
-							System.out.print(gen1.toString() + "\n");
-							System.out.print(gen2.toString() + "\n");
-							System.out.print(hijo1.toString() + "\n");
-							System.out.print(hijo2.toString() + "\n");
-							System.out.print("---------------------------\n");
+						if (!hijo1.contains(aux)) {
+							hijo1.set(j,aux);
 						}
-						hijo1.set(j,aux);
 						
 					}
 					
 					if (!hijo2.contains(gen2.get(j))) {
 						hijo2.set(j, gen2.get(j));
 					}else {
-						hijo2.set(j, gen1.get(getIndex(hijo2,gen2.get(j))));
+						int aux = hijo1.get(getIndex(hijo2,gen2.get(j)));
+						if (!hijo2.contains(aux)) {
+							hijo2.set(j,aux);
+						}
+						
 					}
 				}
 			}
 			
-			
+			hijo1 = rellena(hijo1,gen1);
+			hijo2 = rellena(hijo2,gen2);
 			
 			poblacion.get(cruces.get(i)).setIndividuo(hijo1);
 			poblacion.get(cruces.get(i+1)).setIndividuo(hijo2);
@@ -98,6 +97,27 @@ public class CrucePMX implements Cruce{
 	
 	private int getIndex(ArrayList<Integer> indiv, int val) {
 		return indiv.indexOf(val);
+	}
+	
+	ArrayList<Integer> rellena(ArrayList<Integer> hijo, ArrayList<Integer> padre){
+		ArrayList<Integer> sol = new ArrayList<Integer>();
+		ArrayList<Integer> posibles = new ArrayList<Integer>();
+		
+		for (int i = 0; i < padre.size(); i++) {
+			if (!hijo.contains(padre.get(i)))
+				posibles.add(padre.get(i));
+		}
+		
+		for (int i = 0; i < hijo.size(); i++) {
+			if (hijo.get(i) == -1) {
+				sol.add(posibles.get(0));
+				posibles.remove(0);
+			}else {
+				sol.add(hijo.get(i));
+			}
+		}
+		
+		return sol;
 	}
 
 }
