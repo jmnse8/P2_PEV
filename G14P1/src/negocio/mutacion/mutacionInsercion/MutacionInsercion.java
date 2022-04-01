@@ -18,8 +18,7 @@ public class MutacionInsercion implements Mutacion{
 			if (rnd.nextDouble() < prob) {// Miro si hay que mutar
 				@SuppressWarnings("unchecked")
 				ArrayList<Integer> gen = (ArrayList<Integer>) poblacion.get(i).getIndividuo();// Cojo el gen
-				@SuppressWarnings("unchecked")
-				ArrayList<Integer> genCopia = (ArrayList<Integer>) poblacion.get(i).getIndividuo();
+	
 				ArrayList<Integer> arrayPosicionesSacar = new ArrayList<Integer>();
 				ArrayList<Integer> arrayPosicionesMeter = new ArrayList<Integer>();
 				
@@ -39,7 +38,7 @@ public class MutacionInsercion implements Mutacion{
 				}
 				
 				for(int j = 0; j < numeroAInsertar; j++) {
-					int aux = genCopia.get(arrayPosicionesSacar.get(j));
+					int aux = gen.get((int) arrayPosicionesSacar.get(j));
 					gen.remove((int) arrayPosicionesSacar.get(j));
 					gen.add(arrayPosicionesMeter.get(j), aux);
 				}

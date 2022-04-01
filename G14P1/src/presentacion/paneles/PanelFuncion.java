@@ -34,11 +34,6 @@ public class PanelFuncion extends JPanel {
 		setBorder(BorderFactory.createTitledBorder(b, "ELIGE LA FUNCIÓN ", TitledBorder.LEFT, TitledBorder.TOP,new Font("Arial", Font.BOLD, 15),Colores.OSCURO2));
 
 		cB = new JComboBox<String>();
-		cB.addItem("Funcion 1");
-		cB.addItem("Funcion 2");
-		cB.addItem("Funcion 3");
-		cB.addItem("Funcion 4");
-		cB.addItem("Funcion 5");
 		cB.addItem("Trafico Aereo");
 		cB.setBounds(20, 20, 210, 20);
 		cB.setBackground(Colores.CLARO1);
@@ -56,20 +51,10 @@ public class PanelFuncion extends JPanel {
 
 	public FuncionEnum getFuncion() {
 		switch ((String) cB.getSelectedItem()) {
-		case "Funcion 1":
-			return FuncionEnum.Funcion_1;
-		case "Funcion 2":
-			return FuncionEnum.Funcion_2;
-		case "Funcion 3":
-			return FuncionEnum.Funcion_3;
-		case "Funcion 4":
-			return FuncionEnum.Funcion_4;
-		case "Funcion 5":
-			return FuncionEnum.Funcion_5;
 		case "Trafico Aereo":
 			return FuncionEnum.Funcion_trafico_aereo;
 		default:
-			return FuncionEnum.Funcion_1;
+			return FuncionEnum.Funcion_trafico_aereo;
 		}
 	}
 	
