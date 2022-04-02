@@ -12,7 +12,7 @@ public class SeleccionTruncamiento implements Seleccion{
 	int trunc = 50;
 
 	@Override
-	public ArrayList<Funcion> execute(ArrayList<Funcion> poblacion) {
+	public ArrayList<Funcion> execute(ArrayList<Funcion> poblacion, double presion) {
 		// TODO Auto-generated method stub
 		int tam_pob = poblacion.size();
 		int distintos = trunc * tam_pob / 100;

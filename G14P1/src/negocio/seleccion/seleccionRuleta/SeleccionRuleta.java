@@ -10,7 +10,7 @@ import java.util.Random;
 public class SeleccionRuleta implements Seleccion{
 
     @Override
-    public ArrayList<Funcion> execute(ArrayList<Funcion> poblacion) {
+    public ArrayList<Funcion> execute(ArrayList<Funcion> poblacion, double presion) {
         // TODO Auto-generated method stub
     	int tam_pob = poblacion.size();
         double sumaFitness = 0;

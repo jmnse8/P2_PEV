@@ -8,6 +8,7 @@ import java.util.Random;
 //import javax.swing.plaf.FontUIResource;
 
 import negocio.funcion.Funcion;
+import presentacion.mainFrame.MainFrame;
 
 public class FuncionTraficoAereo implements Funcion, Cloneable {
 
@@ -15,6 +16,7 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 	private Vuelo[] vuelos;
 	private double fitness;
 	private ArrayList<Pista> pistas;
+	private int nCaso;
 
 	final static Comparator<Funcion> comp = new Comparator<Funcion>() {
 		@Override
@@ -43,6 +45,7 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 
 	public FuncionTraficoAereo() {
 		individuo = new ArrayList<Integer>();
+		nCaso = MainFrame.getInstance().getNFuncion();
 
 		//individuo.add(8);individuo.add(12);individuo.add(11);individuo.add(4);individuo.add(3);individuo.add(10);individuo.add(5);
 		//individuo.add(6);individuo.add(7);individuo.add(9);individuo.add(1);individuo.add(2);
@@ -51,7 +54,7 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 		// individuo.add(5);individuo.add(4);individuo.add(3);individuo.add(2);individuo.add(1);
 
 		Random rd = new Random();
-		int nVuelos = DatosTraficoAereo.getNumVuelos();
+		int nVuelos = DatosTraficoAereo.getNumVuelos(nCaso);
 		int cont = 0;
 		while (cont < nVuelos) {
 			int numero = rd.nextInt(nVuelos);
@@ -61,7 +64,7 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 			}
 		}
 		pistas = new ArrayList<Pista>();
-		for (int i = 1; i <= DatosTraficoAereo.getNumPistas(); i++) {
+		for (int i = 1; i <= DatosTraficoAereo.getNumPistas(nCaso); i++) {
 			pistas.add(new Pista(i));
 		}
 	}
@@ -74,14 +77,14 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 	@Override
 	public void calculaFitness() {
 		pistas = new ArrayList<Pista>();
-		vuelos = DatosTraficoAereo.getVuelos();
-		for (int i = 1; i <= DatosTraficoAereo.getNumPistas(); i++) {
+		vuelos = DatosTraficoAereo.getVuelos(nCaso);
+		for (int i = 1; i <= DatosTraficoAereo.getNumPistas(nCaso); i++) {
 			pistas.add(new Pista(i));
 		}
 		for (Integer ent : individuo) {
 			ArrayList<ParejaPistaVuelo> mejor = new ArrayList<ParejaPistaVuelo>();
 			for (Pista p : pistas) {
-				mejor.add(new ParejaPistaVuelo(p.getNPista(), p.cuantoCuestaMeterEnPista(vuelos[ent - 1])));
+				mejor.add(new ParejaPistaVuelo(p.getNPista(), p.cuantoCuestaMeterEnPista(vuelos[ent - 1], nCaso)));
 			}
 			Collections.sort(mejor, compPV);
 			pistas.get(mejor.get(0).numeroPista - 1).meteVuelo(vuelos[ent - 1], mejor.get(0).tla);
@@ -90,7 +93,7 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 		double suma = 0.0;
 		for (Pista p : pistas) {
 			for (Vuelo v : p.getAvionesEnPista()) {
-				suma += Math.pow((v.tla - DatosTraficoAereo.menorTel[v.numero - 1]), 2);
+				suma += Math.pow((v.tla - DatosTraficoAereo.getMenorTel(nCaso,v.numero - 1)), 2);
 
 			}
 		}
@@ -113,7 +116,7 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 
 	@Override
 	public int getTam() {
-		return DatosTraficoAereo.getNumVuelos();
+		return DatosTraficoAereo.getNumVuelos(nCaso);
 	}
 
 	@Override
@@ -166,7 +169,7 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 						tablaMasLarga = p.getAvionesEnPista().size();
 					sol += "               __________________________ ";
 				} else if (i == 1) {
-					sol += "              |          TABLA " + p.getNPista() + "         |";
+					sol += "              |          PISTA " + p.getNPista() + "         |";
 				} else if (i == 2) {
 					sol += "              |--------------------------|";
 				} else if (i == 3) {
@@ -179,21 +182,13 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 		}
 
 		for (int i = 0; i < tablaMasLarga; i++) {
-			sol += "              ";
-			if (pistas.get(0).hayVuelo(i))
-				sol += pistas.get(0).getVuelo(i);
-			else
-				sol += "|                          |";
-			sol += "              ";
-			if (pistas.get(1).hayVuelo(i))
-				sol += pistas.get(1).getVuelo(i);
-			else
-				sol += "|                          |";
-			sol += "              ";
-			if (pistas.get(2).hayVuelo(i))
-				sol += pistas.get(2).getVuelo(i);
-			else
-				sol += "|                          |";
+			for(Pista p:pistas) {
+				sol += "              ";
+				if (p.hayVuelo(i))
+					sol += p.getVuelo(i);
+				else
+					sol += "|                          |";
+			}
 			sol += "\n";
 		}
 		for (Pista p : pistas) {

@@ -1,33 +1,87 @@
 package negocio.funcion.funcionTraficoAereo;
 
+import negocio.funcion.funcionTraficoAereo.datos.Datos1;
+import negocio.funcion.funcionTraficoAereo.datos.Datos2;
+import negocio.funcion.funcionTraficoAereo.datos.Datos3;
+
 public class DatosTraficoAereo {
-	
-	public static Vuelo[] getVuelos() {
-		Vuelo[] vuelos = { new Vuelo(1, "UA138", 'w'), new Vuelo(2, "UA532", 'g'),
-				new Vuelo(3, "UA599", 'w'), new Vuelo(4, "NW358", 'w'), new Vuelo(5, "UA2987", 'p'),
-				new Vuelo(6, "AA128", 'w'), new Vuelo(7, "UA1482", 'g'), new Vuelo(8, "NW357", 'w'),
-				new Vuelo(9, "AA129", 'w'), new Vuelo(10, "UA2408", 'p'), new Vuelo(11, "UA805", 'w'),
-				new Vuelo(12, "AA309", 'g') };
-		return vuelos;
-	}
-/*
-	public final static Vuelo[] vuelos = { new Vuelo(1, "UA138", 'w'), new Vuelo(2, "UA532", 'g'),
-			new Vuelo(3, "UA599", 'w'), new Vuelo(4, "NW358", 'w'), new Vuelo(5, "UA2987", 'p'),
-			new Vuelo(6, "AA128", 'w'), new Vuelo(7, "UA1482", 'g'), new Vuelo(8, "NW357", 'w'),
-			new Vuelo(9, "AA129", 'w'), new Vuelo(10, "UA2408", 'p'), new Vuelo(11, "UA805", 'w'),
-			new Vuelo(12, "AA309", 'g') };
-*/
-	public final static int[][] tel = { { 11, 15, 6, 6, 9, 7, 15, 6, 6, 9, 7, 9 },
-			{ 10, 17, 7, 7, 12, 6, 17, 7, 7, 12, 6, 7 }, { 9, 19, 8, 8, 15, 5, 19, 8, 8, 15, 5, 5 } };
-	
-	public final static int[] menorTel = {9, 15, 6, 6, 9, 5, 15, 6, 6, 9, 5, 5};
 
-	public final static double[][] sep = { { 1, 1.5, 2 }, { 1, 1.5, 1.5 }, { 1, 1, 1 } };
+	public static Vuelo[] getVuelos(int nCaso) {
+		switch (nCaso) {
+		case 1:
+			return Datos1.getVuelos();
+		case 2:
+			return Datos2.getVuelos();
+		case 3:
+			return Datos3.getVuelos();
+		default:
+			return Datos1.getVuelos();
+		}
 
-	public static int getNumVuelos() {
-		return 12;
 	}
-	public static int getNumPistas() {
-		return 3;
+	
+	public static int getTel(int nCaso, int i, int j) {
+		switch (nCaso) {
+		case 1:
+			return Datos1.tel[i][j];
+		case 2:
+			return Datos2.tel[i][j];
+		case 3:
+			return Datos3.tel[i][j];
+		default:
+			return Datos1.tel[i][j];
+		}
+	}
+	
+	public static int getMenorTel(int nCaso, int i) {
+		switch (nCaso) {
+		case 1:
+			return Datos1.menorTel[i];
+		case 2:
+			return Datos2.menorTel[i];
+		case 3:
+			return Datos3.menorTel[i];
+		default:
+			return Datos1.menorTel[i];
+		}
+	}
+	
+	public static double getSep(int nCaso, int i, int j) {
+		switch (nCaso) {
+		case 1:
+			return Datos1.sep[i][j];
+		case 2:
+			return Datos2.sep[i][j];
+		case 3:
+			return Datos3.sep[i][j];
+		default:
+			return Datos1.sep[i][j];
+		}
+	}
+
+	public static int getNumVuelos(int nCaso) {
+		switch (nCaso) {
+		case 1:
+			return Datos1.getNumVuelos();
+		case 2:
+			return Datos2.getNumVuelos();
+		case 3:
+			return Datos3.getNumVuelos();
+		default:
+			return Datos1.getNumVuelos();
+		}
+	}
+
+	public static int getNumPistas(int nCaso) {
+		switch (nCaso) {
+		case 1:
+			return Datos1.getNumPistas();
+		case 2:
+			return Datos2.getNumPistas();
+		case 3:
+			return Datos3.getNumPistas();
+		default:
+			return Datos1.getNumPistas();
+		}
 	}
 }

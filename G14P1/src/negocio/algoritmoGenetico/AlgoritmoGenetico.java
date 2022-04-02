@@ -47,10 +47,12 @@ public class AlgoritmoGenetico {
 	private double[] mejorAbsoluto;
 	private double[] mejor;
 	private double[] media;
+	private double[] presSelec;
 
 	private boolean max;
 	private double mejGenAct;
 	private double mediaAct;
+	private double presSelecAct;
 	private double mejAbs;
 	private Funcion mejorF;
 	private Funcion mejorActF;
@@ -79,6 +81,7 @@ public class AlgoritmoGenetico {
 		mejorAbsoluto = new double[numGeneraciones];
 		mejor = new double[numGeneraciones];
 		media = new double[numGeneraciones];
+		presSelec =  new double[numGeneraciones];
 
 		iniPoblacion();
 		algoritmo();
@@ -91,7 +94,7 @@ public class AlgoritmoGenetico {
 		for (int generacionActual = 0; generacionActual < numGeneraciones; generacionActual++) {
 			if (elitismoSeleccionado)
 				guardarElite();// guardar elite
-			poblacion = seleccion.execute(poblacion);
+			poblacion = seleccion.execute(poblacion, presSelecAct);
 			poblacion = cruce.execute(poblacion, porcentajeCruce);
 			poblacion = mutacion.execute(poblacion, porcentajeMutacion);
 			// ev poblacion
@@ -109,6 +112,7 @@ public class AlgoritmoGenetico {
 	private void guardarDatos(int generacionActual) {
 		mejor[generacionActual] = mejGenAct;
 		media[generacionActual] = mediaAct;
+		presSelec[generacionActual] = presSelecAct;
 		if (max) {
 			if (mejAbs < mejGenAct) {
 				mejorAbsoluto[generacionActual] = mejGenAct;
@@ -132,6 +136,7 @@ public class AlgoritmoGenetico {
 			poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo, intervalo));
 		}
 		max = poblacion.get(0).getMax();
+		presSelecAct = 0;
 		if (max) {
 			mejGenAct = -1;
 			mediaAct = 0;
@@ -153,7 +158,8 @@ public class AlgoritmoGenetico {
 		plot.addLegend("SOUTH");
 		plot.addLinePlot("Mejor Absoluto", Color.BLUE, x, mejorAbsoluto);
 		plot.addLinePlot("Mejor de la Generación", Color.RED, x, mejor);
-		plot.addLinePlot("Media Generación", Color.GREEN, x, media);
+		plot.addLinePlot("Media Generación", Color.GREEN, x, media);//presSelec
+		plot.addLinePlot("Presión Selectiva", Color.BLACK, x, presSelec);
 		mF.setGrafica(plot);
 		JOptionPane.showMessageDialog(null, "La mejor solución ha sido: \n" + mejorF.toString(), "Solución", JOptionPane.PLAIN_MESSAGE);
 	}
@@ -195,6 +201,7 @@ public class AlgoritmoGenetico {
 		}
 		mediaAct = suma / tamPoblacion;
 		mejGenAct = mA;
+		presSelecAct = (mejorActF.getFitness()/suma) * 10 * tamPoblacion;//(mejGenAct / mediaAct);
 		Collections.sort(poblacion, poblacion.get(0).getComp());
 	}
 }

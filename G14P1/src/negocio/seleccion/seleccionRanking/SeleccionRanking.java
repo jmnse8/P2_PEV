@@ -10,7 +10,7 @@ import java.util.Random;
 public class SeleccionRanking implements Seleccion{
 
     @Override
-    public ArrayList<Funcion> execute(ArrayList<Funcion> poblacion) {
+    public ArrayList<Funcion> execute(ArrayList<Funcion> poblacion, double presion) {
         // TODO Auto-generated method stub
     	int tam_pob = poblacion.size();
         //double sumaFitness = 0;
@@ -21,7 +21,7 @@ public class SeleccionRanking implements Seleccion{
 
         Random rnd = new Random();
         
-        double beta = 1.5; //Habría que pasarle la presion selectiva aqui
+        double beta = presion; //Habría que pasarle la presion selectiva aqui
 
         for (int i = 0; i < tam_pob; i++){
         	double probabilidad = (1.0 / (double)tam_pob) * (beta -(2.0 * (beta - 1.0) * (double)i / (double)(tam_pob - 1)));

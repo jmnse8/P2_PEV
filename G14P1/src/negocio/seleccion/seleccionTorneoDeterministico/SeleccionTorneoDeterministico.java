@@ -11,7 +11,7 @@ import java.util.Random;
 public class SeleccionTorneoDeterministico implements Seleccion{
 
 	@Override
-	public ArrayList<Funcion> execute(ArrayList<Funcion> poblacion) {
+	public ArrayList<Funcion> execute(ArrayList<Funcion> poblacion, double presion) {
 		
 		int tam_pob = poblacion.size();
 		ArrayList<Funcion> seleccion;

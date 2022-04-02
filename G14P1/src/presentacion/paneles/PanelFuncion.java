@@ -39,11 +39,11 @@ public class PanelFuncion extends JPanel {
 		cB.setBackground(Colores.CLARO1);
 		cB.setForeground(Colores.OSCURO2);
 		
-		SpinnerNumberModel modeloSpinner = new SpinnerNumberModel(4, 1, 10, 1);
+		SpinnerNumberModel modeloSpinner = new SpinnerNumberModel(1, 1, 3, 1);
 		
         nS = new JSpinner(modeloSpinner);
         nS.setBounds(240, 20, 40, 20);
-        nS.setToolTipText("Seleccionar n de la función Michalewicz");
+        nS.setToolTipText("Seleccionar caso de prueba");
 		
 		add(cB);
 		add(nS);

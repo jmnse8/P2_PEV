@@ -10,7 +10,7 @@ import negocio.seleccion.Seleccion;
 public class SeleccionTorneoProbabilistico implements Seleccion{
 
 	@Override
-	public ArrayList<Funcion> execute(ArrayList<Funcion> poblacion) {
+	public ArrayList<Funcion> execute(ArrayList<Funcion> poblacion, double presion) {
 		
 		int tam_pob = poblacion.size();
 		ArrayList<Funcion> seleccion;
