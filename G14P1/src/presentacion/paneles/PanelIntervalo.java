@@ -24,7 +24,7 @@ public class PanelIntervalo extends JPanel{
 		setLayout(null);
 		setBounds(5, 445, 300, 60);
 		setBackground(Colores.CLARO2);
-
+/*
 		Border b = BorderFactory.createLineBorder(Colores.OSCURO2, 2);
 		setBorder(BorderFactory.createTitledBorder(b, "ELIGE EL INTERVALO DE PRECISIÓN ", TitledBorder.LEFT, TitledBorder.TOP,new Font("Arial", Font.BOLD, 15),Colores.OSCURO2));
 		inte = new JTextField();
@@ -33,7 +33,7 @@ public class PanelIntervalo extends JPanel{
 		inte.setBackground(Colores.CLARO1);
 		inte.setForeground(Colores.OSCURO2);
 		
-		add(inte);
+		add(inte);*/
 	}
 	
 	public double getIntervalo() {
