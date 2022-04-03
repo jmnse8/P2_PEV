@@ -103,6 +103,8 @@ public class CrucePMX implements Cruce{
 		return indiv.indexOf(val);
 	}
 	
+	//Esta funcion crea un array con los elementos que hay en el padre y no en el hijo y los introduce
+	//en el hijo siguiendo el orden relativo que tenian en el padre
 	ArrayList<Integer> rellena(ArrayList<Integer> hijo, ArrayList<Integer> padre){
 		ArrayList<Integer> sol = new ArrayList<Integer>();
 		ArrayList<Integer> posibles = new ArrayList<Integer>();

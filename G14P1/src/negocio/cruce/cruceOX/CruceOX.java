@@ -50,7 +50,7 @@ public class CruceOX implements Cruce{
 				hijo2.add(-1);
 			}
 			
-			//Elegimos unos puntos de core aleatorios
+			//Elegimos unos puntos de corte aleatorios
 			int r1 = rnd.nextInt(tam);
 			int r2 = rnd.nextInt(tam);
 			
@@ -68,6 +68,8 @@ public class CruceOX implements Cruce{
 			int it = c2 + 1 , act = c2 +1;
 			
 			//rellenamos el resto de ambos hijos con los valores restantes de los padres de forma ordenada
+			
+			//Rellenamos hijo 1
 			while (it != c1) {
 				it = it % tam;
 				act = act % tam;
@@ -82,6 +84,7 @@ public class CruceOX implements Cruce{
 			it = c2 + 1;
 			act = c2 +1;
 			
+			//Rellenamos hijo 2
 			while (it != c1) {
 				it = it % tam;
 				act = act % tam;
@@ -93,7 +96,7 @@ public class CruceOX implements Cruce{
 				act++;
 			}
 			
-			
+			//Reintroducimos los hijos a la poblacion
 			poblacion.get(cruces.get(i)).setIndividuo(hijo1);
 			poblacion.get(cruces.get(i+1)).setIndividuo(hijo2);
 		}

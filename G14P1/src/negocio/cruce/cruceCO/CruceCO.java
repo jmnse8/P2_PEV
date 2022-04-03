@@ -60,7 +60,7 @@ public class CruceCO implements Cruce{
 			Collections.sort(gen1copia);
 			Collections.sort(gen2copia);
 			
-			//generamos el recorrido de cada padre
+			//generamos el recorrido dinamico de cada padre
 			for (int j = 0; j < tam; j++) {
 				int pos = getIndex(gen1copia,gen1.get(j));
 				recorrido1.add(pos);
@@ -89,7 +89,7 @@ public class CruceCO implements Cruce{
 			Collections.sort(gen1copia);
 			Collections.sort(gen2copia);
 			
-			//generamos los hijos con los nuevos recorridos
+			//generamos los hijos con los nuevos recorridos dinamicos
 			for (int j = 0; j < tam; j++) {
 				int pos = recorrido1.get(j);
 				hijo1.add(gen1copia.get(pos));
@@ -100,6 +100,7 @@ public class CruceCO implements Cruce{
 				gen2copia.remove(pos);
 			}
 			
+			//reintroducimos los hijos a la poblacion
 			poblacion.get(cruces.get(i)).setIndividuo(hijo1);
 			poblacion.get(cruces.get(i+1)).setIndividuo(hijo2);
 		}

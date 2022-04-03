@@ -76,6 +76,8 @@ public class CruceOXPP implements Cruce{
 			
 			
 			//rellenamos el resto de ambos hijos con los valores restantes de los padres de forma ordenada
+			
+			//Rellenamos hijo 1
 			while (it != maxCambio) {
 				it = it % tam;
 				act = act % tam;
@@ -92,6 +94,7 @@ public class CruceOXPP implements Cruce{
 			it = maxCambio + 1;
 			act = maxCambio + 1;
 			
+			//Rellenamos hijo 2
 			while (it != maxCambio) {
 				it = it % tam;
 				act = act % tam;
@@ -105,7 +108,7 @@ public class CruceOXPP implements Cruce{
 				act++;
 			}
 			
-			
+			//Reintroducimos los hijos a la poblacion
 			poblacion.get(cruces.get(i)).setIndividuo(hijo1);
 			poblacion.get(cruces.get(i+1)).setIndividuo(hijo2);
 		}

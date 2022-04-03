@@ -68,8 +68,9 @@ public class CruceOXOP implements Cruce{
 			
 			
 			//reordenamos los hijos
-			ArrayList<Integer> aux = new ArrayList<Integer>();
+			ArrayList<Integer> aux = new ArrayList<Integer>(); //Array con los elementos a intercambiar
 			
+			//Reordenamos hijo 2
 			for (int j = 0; j < cambios; j++) {
 				aux.add(gen1.get(intercambios.get(j)));
 			}
@@ -87,6 +88,7 @@ public class CruceOXOP implements Cruce{
 			
 			aux = new ArrayList<Integer>();
 			
+			//reodenamos hijo 1
 			for (int j = 0; j < cambios; j++) {
 				aux.add(gen2.get(intercambios.get(j)));
 			}
@@ -101,6 +103,7 @@ public class CruceOXOP implements Cruce{
 				}
 			}
 			
+			//Reintroducimos los hijos a la poblacion
 			poblacion.get(cruces.get(i)).setIndividuo(hijo1);
 			poblacion.get(cruces.get(i+1)).setIndividuo(hijo2);
 		}

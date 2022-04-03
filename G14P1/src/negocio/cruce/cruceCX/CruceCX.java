@@ -70,7 +70,7 @@ public class CruceCX implements Cruce{
 					hijo1.set(j, gen2.get(j));
 			}
 			
-			
+			//Realizamos el mismo proceso que en el hijo anterior
 			first = gen2.get(0);
 			hijo2.set(0, first);
 			pair = gen1.get(0);
@@ -89,6 +89,7 @@ public class CruceCX implements Cruce{
 					hijo2.set(j, gen1.get(j));
 			}
 			
+			//Reintroducimos los hijos a la poblacion
 			poblacion.get(cruces.get(i)).setIndividuo(hijo1);
 			poblacion.get(cruces.get(i+1)).setIndividuo(hijo2);
 		}
