@@ -12,13 +12,13 @@ import presentacion.mainFrame.MainFrame;
 
 public class FuncionTraficoAereo implements Funcion, Cloneable {
 
-	private ArrayList<Integer> individuo;
-	private Vuelo[] vuelos;
+	private ArrayList<Integer> individuo;// individuo array de enteros con orden de vuelos
+	private Vuelo[] vuelos;// información de los vuelos
 	private double fitness;
-	private ArrayList<Pista> pistas;
-	private int nCaso;
+	private ArrayList<Pista> pistas;//Array de listas
+	private int nCaso;//número de caso elegido a ejecutar
 
-	final static Comparator<Funcion> comp = new Comparator<Funcion>() {
+	final static Comparator<Funcion> comp = new Comparator<Funcion>() {// comparador de esta función mediante el fitness
 		@Override
 		public int compare(Funcion o1, Funcion o2) {
 			Double aux = o1.getFitness(), aux2 = o2.getFitness();
@@ -31,7 +31,7 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 				return -1;
 		}
 	};
-	private final static Comparator<ParejaPistaVuelo> compPV = new Comparator<ParejaPistaVuelo>() {
+	private final static Comparator<ParejaPistaVuelo> compPV = new Comparator<ParejaPistaVuelo>() { //comprador de ParejaPistaVuelo mediante el tla conseguido
 		@Override
 		public int compare(ParejaPistaVuelo o1, ParejaPistaVuelo o2) {
 			if (o1.tla > o2.tla)
@@ -44,26 +44,20 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 	};
 
 	public FuncionTraficoAereo() {
-		individuo = new ArrayList<Integer>();
-		nCaso = MainFrame.getInstance().getNFuncion();
-
-		//individuo.add(8);individuo.add(12);individuo.add(11);individuo.add(4);individuo.add(3);individuo.add(10);individuo.add(5);
-		//individuo.add(6);individuo.add(7);individuo.add(9);individuo.add(1);individuo.add(2);
-
-		//individuo.add(8);individuo.add(9);individuo.add(10);individuo.add(11);individuo.add(12);individuo.add(7);individuo.add(6);
-		// individuo.add(5);individuo.add(4);individuo.add(3);individuo.add(2);individuo.add(1);
-
+		individuo = new ArrayList<Integer>();// inicializo individuo
+		nCaso = MainFrame.getInstance().getNFuncion();// cojo nº caso
+		
 		Random rd = new Random();
 		int nVuelos = DatosTraficoAereo.getNumVuelos(nCaso);
 		int cont = 0;
-		while (cont < nVuelos) {
+		while (cont < nVuelos) {// meto los nº del individuo mediante aleatorios
 			int numero = rd.nextInt(nVuelos);
 			if (!individuo.contains(numero + 1)) {
 				individuo.add(numero + 1);
 				cont++;
 			}
 		}
-		pistas = new ArrayList<Pista>();
+		pistas = new ArrayList<Pista>();// inicializo las pistas
 		for (int i = 1; i <= DatosTraficoAereo.getNumPistas(nCaso); i++) {
 			pistas.add(new Pista(i));
 		}
@@ -76,25 +70,24 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 
 	@Override
 	public void calculaFitness() {
-		pistas = new ArrayList<Pista>();
+		pistas = new ArrayList<Pista>();// inicializo las pistas
 		vuelos = DatosTraficoAereo.getVuelos(nCaso);
 		for (int i = 1; i <= DatosTraficoAereo.getNumPistas(nCaso); i++) {
 			pistas.add(new Pista(i));
 		}
-		for (Integer ent : individuo) {
-			ArrayList<ParejaPistaVuelo> mejor = new ArrayList<ParejaPistaVuelo>();
-			for (Pista p : pistas) {
+		for (Integer ent : individuo) {// recorro todos los individuos
+			ArrayList<ParejaPistaVuelo> mejor = new ArrayList<ParejaPistaVuelo>();// array ordenado con la mejor pista posible
+			for (Pista p : pistas) {// calculo el tla de cada pista
 				mejor.add(new ParejaPistaVuelo(p.getNPista(), p.cuantoCuestaMeterEnPista(vuelos[ent - 1], nCaso)));
 			}
-			Collections.sort(mejor, compPV);
-			pistas.get(mejor.get(0).numeroPista - 1).meteVuelo(vuelos[ent - 1], mejor.get(0).tla);
+			Collections.sort(mejor, compPV);// ordeno las posibilidades por el menor tla
+			pistas.get(mejor.get(0).numeroPista - 1).meteVuelo(vuelos[ent - 1], mejor.get(0).tla);// meto el que ha salido menor
 		}
 		
-		double suma = 0.0;
+		double suma = 0.0;// calculo el fitness con la suma de los cuadrados de la diferencia entre el tla conseguido y su menor tel posible
 		for (Pista p : pistas) {
 			for (Vuelo v : p.getAvionesEnPista()) {
-				suma += Math.pow((v.tla - DatosTraficoAereo.getMenorTel(nCaso,v.numero - 1)), 2);
-
+				suma += Math.pow((v.tla - DatosTraficoAereo.getMenorTel(nCaso,v.numero - 1)), 2);// suma += (tla - menorTel)^2
 			}
 		}
 		fitness = suma;
@@ -152,7 +145,7 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 	}
 
 	@Override
-	public String toString() {
+	public String toString() {// dibujo mediante un string los datos de la solución
 		String sol = "   _____ ____  _   _ _______ _____   ____  _         _____  ______    _______ _____           ______ _____ _____ ____              ______ _____  ______ ____  \r\n"
 				+ "  / ____/ __ \\| \\ | |__   __|  __ \\ / __ \\| |       |  __ \\|  ____|  |__   __|  __ \\    /\\   |  ____|_   _/ ____/ __ \\       /\\   |  ____|  __ \\|  ____/ __ \\ \r\n"
 				+ " | |   | |  | |  \\| |  | |  | |__) | |  | | |       | |  | | |__        | |  | |__) |  /  \\  | |__    | || |   | |  | |     /  \\  | |__  | |__) | |__ | |  | |\r\n"
@@ -197,7 +190,6 @@ public class FuncionTraficoAereo implements Funcion, Cloneable {
 		sol += "\n\n                 EL FITNESS RESULTANTE ES " + fitness + ".\n\n";
 		sol += "                EL INDIVIDUO HA SIDO "	+ individuo.toString() + ".";
 		return sol;
-
 	}
 	/*
 	  public static void main(String[] args) {

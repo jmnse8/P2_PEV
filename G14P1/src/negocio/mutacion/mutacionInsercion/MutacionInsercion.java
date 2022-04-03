@@ -37,10 +37,10 @@ public class MutacionInsercion implements Mutacion{
 					}
 				}
 				
-				for(int j = 0; j < numeroAInsertar; j++) {
-					int aux = gen.get((int) arrayPosicionesSacar.get(j));
-					gen.remove((int) arrayPosicionesSacar.get(j));
-					gen.add(arrayPosicionesMeter.get(j), aux);
+				for(int j = 0; j < numeroAInsertar; j++) {// inserto el correspondiente nº de arrayPosicionesSacar en el nº de arrayPosicionesMeter
+					int aux = gen.get((int) arrayPosicionesSacar.get(j));//lo saco
+					gen.remove((int) arrayPosicionesSacar.get(j));// lo borro
+					gen.add(arrayPosicionesMeter.get(j), aux);// lo meto
 				}
 
 				poblacion.get(i).setIndividuo(gen);// Guardo el gen

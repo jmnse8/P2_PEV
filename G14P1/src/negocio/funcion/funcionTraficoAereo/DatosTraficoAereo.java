@@ -4,7 +4,7 @@ import negocio.funcion.funcionTraficoAereo.datos.Datos1;
 import negocio.funcion.funcionTraficoAereo.datos.Datos2;
 import negocio.funcion.funcionTraficoAereo.datos.Datos3;
 
-public class DatosTraficoAereo {
+public class DatosTraficoAereo {// clase que devuelve los datos según el nº caso que le pases
 
 	public static Vuelo[] getVuelos(int nCaso) {
 		switch (nCaso) {

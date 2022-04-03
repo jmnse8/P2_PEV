@@ -1,6 +1,6 @@
 package negocio.funcion.funcionTraficoAereo;
 
-public class Vuelo {
+public class Vuelo {// clase con la información del vuelo
 	public int numero;
 	public String id;
 	public char peso;

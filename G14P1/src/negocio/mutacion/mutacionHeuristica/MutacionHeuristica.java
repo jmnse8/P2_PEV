@@ -23,16 +23,14 @@ public class MutacionHeuristica implements Mutacion {
 			if (rnd.nextDouble() < prob) {// Miro si hay que mutar
 				@SuppressWarnings("unchecked")
 				ArrayList<Integer> gen = (ArrayList<Integer>) poblacion.get(i).getIndividuo();// Cojo el gen
-				ArrayList<Integer> arrayPosicionesPermutar = new ArrayList<Integer>();
+				ArrayList<Integer> arrayPosicionesPermutar = new ArrayList<Integer>();// aquí guardo las posiciones que hay que permutar
 				
-				//System.out.println(gen.toString());
-
 				int numeroAPermutar = -1, contPosicionesSacadas = 0, posPermutar = 0;
 
 				while (numeroAPermutar < 2 || numeroAPermutar > 5) // mínimo 2
-					numeroAPermutar = rnd.nextInt(tam_gen);// Limitado a 10 para que no salgan más de 3.628.800 permutaciones
-				
-				while (contPosicionesSacadas < numeroAPermutar) {
+					numeroAPermutar = rnd.nextInt(tam_gen);// Limitado a 5 para que como mucho haya 120 permutaciones, 
+															//si fueran por ejemplo 10 para que no salgan más de 3.628.800 permutaciones
+				while (contPosicionesSacadas < numeroAPermutar) {// saco aleatoriamente las posiciones
 					posPermutar = rnd.nextInt(tam_gen);
 					if (!arrayPosicionesPermutar.contains(posPermutar)) {
 						arrayPosicionesPermutar.add(posPermutar);
@@ -40,19 +38,10 @@ public class MutacionHeuristica implements Mutacion {
 					}
 				}
 				
-				Funcion aux = new FuncionTraficoAereo();
-				permutaciones = new PriorityQueue<Funcion>(1, aux.getComp());
+				Funcion aux = new FuncionTraficoAereo();// para cojer el comparador
+				permutaciones = new PriorityQueue<Funcion>(1, aux.getComp());// cola de prioridad para cojer el de menor fitness
 
-				ArrayList<Integer> indPerm = new ArrayList<Integer>();
-				for (int j = 0; j < tam_gen; j++) {
-					int nu = gen.get(j);
-					if (!arrayPosicionesPermutar.contains((Integer) nu))
-						indPerm.add(nu);
-				}
-				
-				permutaciones(arrayPosicionesPermutar, gen, arrayPosicionesPermutar.size());
-				
-				//permutaciones.stream().forEach(p -> System.out.println(p.getFitness() + " " + p.getIndividuo()));
+				permutaciones(arrayPosicionesPermutar, gen, arrayPosicionesPermutar.size());// genero las permutaciones
 				
 				poblacion.get(i).setIndividuo(permutaciones.peek().getIndividuo());// Guardo el gen
 			}
@@ -62,7 +51,7 @@ public class MutacionHeuristica implements Mutacion {
 	}
 
 	private void permutaciones(final ArrayList<Integer> arrayPosicionesPermutar, ArrayList<Integer> gen, int k) {
-		if (1 == k) {
+		if (1 == k) {// cuando k llega a uno para y lo mete a la cola de prioridad
 			FuncionTraficoAereo sol = new FuncionTraficoAereo();
 			sol.setIndividuo(new ArrayList<Integer>(gen));
 			sol.calculaFitness();
@@ -80,7 +69,7 @@ public class MutacionHeuristica implements Mutacion {
 		}
 	}
 
-	private void intercambia(ArrayList<Integer> gen, int i, int j, ArrayList<Integer> arrayPosicionesPermutar) {
+	private void intercambia(ArrayList<Integer> gen, int i, int j, ArrayList<Integer> arrayPosicionesPermutar) {// intercambia las dos posiciones del gen
 		Integer t = gen.get(arrayPosicionesPermutar.get(i));
 		Integer t2 = gen.get(arrayPosicionesPermutar.get(j));
 		gen.set(arrayPosicionesPermutar.get(i), t2);

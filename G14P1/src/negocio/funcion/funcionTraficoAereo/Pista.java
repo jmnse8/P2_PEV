@@ -13,24 +13,24 @@ public class Pista {
 
 	public double cuantoCuestaMeterEnPista(Vuelo vueloMeter, int nCaso) {
 		double telAdaptado = 0.0;
-		if (avionesEnPista.isEmpty()) {
+		if (avionesEnPista.isEmpty()) {// si esta vacia cuesta lo mismo que el tel
 			return DatosTraficoAereo.getTel(nCaso, numeroPista - 1, vueloMeter.numero - 1);
 		} else {
 			if (avionesEnPista.get(avionesEnPista.size() - 1).tla > DatosTraficoAereo.getTel(nCaso, numeroPista - 1,
-					vueloMeter.numero - 1))
+					vueloMeter.numero - 1))// si el anterior tiene más tla que el tel me lo guardo con el tla anterior
 				telAdaptado = avionesEnPista.get(avionesEnPista.size() - 1).tla;
-			else
+			else//si no si puede usar su tel
 				telAdaptado = DatosTraficoAereo.getTel(nCaso, numeroPista - 1, vueloMeter.numero - 1);
 
-			double resta = Math.abs(avionesEnPista.get(avionesEnPista.size() - 1).tla - telAdaptado);
+			double resta = Math.abs(avionesEnPista.get(avionesEnPista.size() - 1).tla - telAdaptado);//diferencia entre el tla anterior y el telAdaptado
 			double sep = DatosTraficoAereo.getSep(nCaso, pesoToInt(avionesEnPista.get(avionesEnPista.size() - 1).peso),
-					pesoToInt(vueloMeter.peso));
+					pesoToInt(vueloMeter.peso));// sep que le correspondería acatar
 
-			if (resta >= sep) {
-				return telAdaptado;
+			if (resta >= sep) {// si hay más diferencia que el sep
+				return telAdaptado;// devuelvo el telAdaptado
 			} else {
 				double tiempoAñadir = sep - resta;
-				return telAdaptado + tiempoAñadir;
+				return telAdaptado + tiempoAñadir;// si no le añado lo que hace falta para que lo cumpla
 			}
 		}
 	}
