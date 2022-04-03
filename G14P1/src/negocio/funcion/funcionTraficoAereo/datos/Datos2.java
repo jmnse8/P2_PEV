@@ -13,10 +13,10 @@ public class Datos2 {
 		return vuelos;
 	}
 
-	public final static int[][] tel = { { 11, 15, 6, 6, 9, 7, 15, 6, 6, 9, 7, 9 },
+	public final static int[][] tel = { 
 										{ 10, 17, 7, 7, 12, 6, 17, 7, 7, 12, 6, 7 }};
 	
-	public final static int[] menorTel = {10, 15, 6, 6, 9, 6, 15, 6, 6, 9, 6, 7};
+	public final static int[] menorTel = {10, 17, 7, 7, 12, 6, 17, 7, 7, 12, 6, 7};
 
 	public final static double[][] sep = { { 1, 1.5, 2 }, { 1, 1.5, 1.5 }, { 1, 1, 1 } };
 
@@ -24,6 +24,6 @@ public class Datos2 {
 		return 12;
 	}
 	public static int getNumPistas() {
-		return 2;
+		return 1;
 	}
 }

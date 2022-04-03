@@ -1,20 +1,20 @@
 package presentacion.paneles;
 
-import java.awt.Font;
+//import java.awt.Font;
 
-import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
+//import javax.swing.BorderFactory;
+//import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
+//import javax.swing.JTextField;
+//import javax.swing.border.Border;
+//import javax.swing.border.TitledBorder;
 
 import presentacion.recursos.Colores;
 
 public class PanelIntervalo extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	private JTextField inte;
+	//private JTextField inte;
 	
 	public PanelIntervalo() {
 		iniGUI();
@@ -37,6 +37,7 @@ public class PanelIntervalo extends JPanel{
 	}
 	
 	public double getIntervalo() {
+		/*
 		double i = -1;
 		try {
 			i = Double.parseDouble(inte.getText());
@@ -48,5 +49,7 @@ public class PanelIntervalo extends JPanel{
 		}
 		
 		return i;
+		*/
+		return 0.01;
 	}
 }
