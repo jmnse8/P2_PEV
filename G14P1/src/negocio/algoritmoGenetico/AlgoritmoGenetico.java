@@ -180,8 +180,9 @@ public class AlgoritmoGenetico {
 	}
 
 	private void evaluar() {
-		double suma = 0.0, fA = 0.0;
+		double suma = 0.0, fA = 0.0, sumaAdaptado = 0.0;
 		double mA = (max) ? -1 : Double.MAX_VALUE;
+		
 		for (int i = 0; i < tamPoblacion; i++) {
 			poblacion.get(i).calculaFitness();
 			fA = poblacion.get(i).getFitness();
@@ -199,9 +200,13 @@ public class AlgoritmoGenetico {
 				}
 			}
 		}
+		Collections.sort(poblacion, poblacion.get(0).getComp());
+		for (int i = 0; i < tamPoblacion; i++) {
+			sumaAdaptado += (poblacion.get(tamPoblacion - 1).getFitness()  * 1.05) - poblacion.get(i).getFitness();
+		}
 		mediaAct = suma / tamPoblacion;
 		mejGenAct = mA;
-		presSelecAct = (mejorActF.getFitness()/suma) * 10 * tamPoblacion;//(mejGenAct / mediaAct);
-		Collections.sort(poblacion, poblacion.get(0).getComp());
+		double adaptado = (poblacion.get(tamPoblacion - 1).getFitness()  * 1.05) - poblacion.get(0).getFitness();
+		presSelecAct = (adaptado/sumaAdaptado) * tamPoblacion;
 	}
 }
